@@ -780,6 +780,10 @@ footer{background:var(--navy-900);color:var(--navy-100)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .swatch{width:30px;height:30px;border-radius:50%;cursor:pointer;border:2px solid var(--gray-100);box-shadow:inset 0 0 0 2px #fff;transition:.2s}
 .swatch.sel{border-color:var(--teal);transform:scale(1.1)}
+.swatch.pattern{width:38px;height:38px;border-radius:10px;background-size:cover;background-position:center;background-color:var(--gray-50);box-shadow:none}
+.pattern-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+.pattern-wrap span{font-size:10.5px;font-weight:600;color:var(--t-mut)}
+.pattern-wrap.sel span{color:var(--t-head)}
 .chip-size{padding:8px 15px;border:1.5px solid var(--gray-100);border-radius:9px;background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:var(--t-body);font-family:'Inter';transition:.2s}
 .chip-size.sel{border-color:var(--navy);background:var(--navy);color:#fff}
 .modal-info .modal-actions{display:flex;align-items:center;gap:10px;margin:6px 0 4px}
@@ -1462,21 +1466,29 @@ function imgErr(el){const p=el.parentElement;p.classList.add('pthumb-fallback');
 
 const PRODUCTS = [
  /* ───── HOSPITAL ───── */
- {id:1, name:'Bedsheet',               cat:'hospital-linen', badge:'Hospital', img:'Products/Hospital Bedsheet.png', tc:'200 TC', size:'64"×90"',  color:'White', fabric:'1cm Stripe Cotton', price:460, mrp:520, rating:4.8},
- {id:2, name:'Pillow Cover',           cat:'hospital-linen', badge:'Hospital', img:'Products/Hosptial_pillow_cover.png', tc:'200 TC', size:'20"×30"',  color:'White', fabric:'Cotton', price:115, from:true, rating:4.6},
- {id:3, name:'Pillow',                 cat:'hospital-linen', badge:'Hospital', img:'Products/Hospital_pillow.png', tc:'—',      size:'17"×27"',  color:'White', fabric:'Hypoallergenic Fill', price:370, from:true, rating:4.7},
- {id:4, name:'Attender Coat',          cat:'hospital-linen', badge:'Hospital', img:'Products/Attender Coat.png', tc:'—', size:'S–3XL',    color:'White', fabric:'Cotton-Poly', enq:true, rating:4.6},
- {id:5, name:'Patient Gown',           cat:'hospital-linen', badge:'Hospital', img:'Products/Patient Gown.png', tc:'—', size:'Free / Custom', color:'Blue', fabric:'Cotton Blend', enq:true, rating:4.5},
- {id:6, name:'Uniform · Nurse / Doctor',cat:'hospital-linen', badge:'Hospital', img:'Products/Doctor and Nurse Uniform.png', tc:'—',     size:'S–3XL',    color:'Ceil Blue', fabric:'Cotton-Poly', enq:true, rating:4.7},
+ {id:1, name:'Bedsheet',               cat:'hospital-linen', badge:'Hospital', img:'Products/Hospital_bedsheet.png',patterns:{Plain:'Products/Plain_hospital_bedsheet.png', Printed:'Products/Printed_hospital_bedsheet.png', Stripe:'Products/stripe_hospital_bedsheet.png'}, tc:'200 TC', size:'64"×90"',  color:'White', fabric:'1cm Stripe Cotton', price:460, mrp:520, rating:4.8},
+ {id:2, name:'Pillow Cover',           cat:'hospital-linen', badge:'Hospital', img:'Products/Hosptial_pillow_cover.png',patterns:{Plain:'Products/Plain_hospital_pillow_cover.png', Printed:'Products/Printed_hospital_pillow_cover.png', Stripe:'Products/stripe_hospital_pillow_cover.png'},  tc:'200 TC', size:'20"×30"',  color:'White', fabric:'Cotton', price:115, from:true, rating:4.6},
+ {id:3, name:'Pillow',                 cat:'hospital-linen', badge:'Hospital', img:'Products/Hospital_pillow.png',patterns:{Plain:'Products/Plain_hospital_pillow.jpeg', Printed:'Products/Printed_hospital_pillow.png', Stripe:'Products/Stripe_hospital_pillow.png'}, tc:'—',      size:'17"×27"',  color:'White', fabric:'Hypoallergenic Fill', price:370, from:true, rating:4.7},
+ {id:4, name:'Attender Coat',          cat:'hospital-linen', badge:'Hospital', img:'Products/Attender Coat.png', patterns:{Plain:'Products/Plain_coat.png', Printed:'Products/Printed_coat.png', Stripe:'Products/Stripe_coat.png'}, tc:'—', size:'S–3XL',    color:'White', fabric:'Cotton-Poly', enq:true, rating:4.6},
+ {id:5, name:'Patient Gown',           cat:'hospital-linen', badge:'Hospital', img:'Products/Patient Gown.png',patterns:{Plain:'Products/Plain_Patient.png', Printed:'Products/Printed_patient.png', Stripe:'Products/Stripe_patient.png'}, tc:'—', size:'Free / Custom', color:'Blue', fabric:'Cotton Blend', enq:true, rating:4.5},
+ {id:6, name:'Uniform · Nurse / Doctor',cat:'hospital-linen', badge:'Hospital', img:'Products/Doctor and Nurse Uniform.png',patterns:{Plain:'Products/Plain_uniform.png', Printed:'Products/Printed_uniform.png', Stripe:'Products/Striped_uniform.png'}, tc:'—',     size:'S–3XL',    color:'Ceil Blue', fabric:'Cotton-Poly', enq:true, rating:4.7},
  /* ───── HOTEL ───── */
- {id:7, name:'Bedsheet',               cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_bedsheet.png', tc:'300 TC', size:'65"×110"', color:'White', fabric:'Sateen Cotton', price:500, rating:4.9},
- {id:8, name:'Bedspread',              cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_bedspread.png', tc:'300 TC', size:'110"×110"',color:'White', fabric:'Cotton Sateen', price:775, from:true, rating:4.8},
- {id:9, name:'Pillow Cover',           cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_pillow_cover.png', tc:'300 TC', size:'20"×30"',  color:'White', fabric:'Sateen', price:125, rating:4.7},
- {id:10,name:'Pillow',                 cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_pillow.png', tc:'—',      size:'17"×27"',  color:'White', fabric:'Microfibre Fill', price:390, from:true, rating:4.8},
- {id:11,name:'Turkey Towel',           cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_turkey.png', tc:'500 GSM',size:'30"×60"',  color:'White', fabric:'Terry Cotton', price:230, from:true, rating:4.8},
- {id:12,name:'Bath Towel / Mat',       cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_Bath Mat_towel.png', tc:'—',      size:'20"×30"',  color:'White', fabric:'Absorbent Cotton', price:175, from:true, rating:4.6},
- {id:13,name:'Quilt',                  cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_quilt.png', tc:'—',      size:'90"×100"', color:'Assorted', fabric:'Microfibre Fill', price:1450, from:true, rating:4.7},
- {id:14,name:'Quilt Cover',            cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_quilt_cover.png', tc:'200 TC', size:'90"×100"', color:'White', fabric:'Cotton Percale', price:650, from:true, rating:4.6},
+ {id:7, name:'Bedsheet',               cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_bedsheet.png',
+  patterns:{Plain:'Products/Plain.png', Printed:'Products/Printed_bedsheet.png', Stripe:'Products/Stripe_bedsheet.png'},
+  tc:'300 TC', size:'65"×110"', color:'White', fabric:'Sateen Cotton', price:500, rating:4.9},
+ {id:8, name:'Bedspread',              cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_bedspread.png',
+  patterns:{Plain:'Products/Plain.png', Printed:'Products/Printed_bedspread.png', Stripe:'Products/Stripe_bedspread.png'},
+  tc:'300 TC', size:'110"×110"',color:'White', fabric:'Cotton Sateen', price:775, from:true, rating:4.8},
+ {id:9, name:'Pillow Cover',           cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_pillow_cover.png',
+  patterns:{Plain:'Products/Plain_pillow_cover.png', Printed:'Products/Printed_pillow_cover.png', Stripe:'Products/Stripe_pillow_cover.png'},
+  tc:'300 TC', size:'20"×30"',  color:'White', fabric:'Sateen', price:125, rating:4.7},
+ {id:10,name:'Pillow',                 cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_pillow.png',
+  patterns:{Plain:'Products/Plain_pillow.png', Printed:'Products/Printed_pillow.png', Stripe:'Products/Stripe_pillow.png'},
+  tc:'—',      size:'17"×27"',  color:'White', fabric:'Microfibre Fill', price:390, from:true, rating:4.8},
+ {id:11,name:'Turkey Towel',           cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_turkey.png', patterns:{Plain:'Products/Plain_turkey.png', Printed:'Products/Printed_turkey.png', Stripe:'Products/Stripe_turkey.png'}, tc:'500 GSM',size:'30"×60"',  color:'White', fabric:'Terry Cotton', price:230, from:true, rating:4.8},
+ {id:12,name:'Bath Towel / Mat',       cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_Bath Mat_towel.png', patterns:{Plain:'Products/Plain_bath_mat.png', Printed:'Products/Printed_bath_mat.png', Stripe:'Products/Stripe_bath_towel.png'},tc:'—',      size:'20"×30"',  color:'White', fabric:'Absorbent Cotton', price:175, from:true, rating:4.6},
+ {id:13,name:'Quilt',                  cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_quilt.png', patterns:{Plain:'Products/Plain_quilt.png', Printed:'Products/Printed_quilt.png', Stripe:'Products/Stripe_quilt.png'},tc:'—',      size:'90"×100"', color:'Assorted', fabric:'Microfibre Fill', price:1450, from:true, rating:4.7},
+ {id:14,name:'Quilt Cover',            cat:'hotel',          badge:'Hotel',    img:'Products/Hotel_quilt_cover.png', patterns:{Plain:'Products/Plain_quilt_cover.png', Printed:'Products/Printed_quilt.png', Stripe:'Products/Stripe_quilt_cover.png'},tc:'200 TC', size:'90"×100"', color:'White', fabric:'Cotton Percale', price:650, from:true, rating:4.6},
 ];
 
 const THREADS = [
@@ -1759,13 +1771,15 @@ function goToForm(){ closeDrawer(); document.getElementById('enquiry').scrollInt
 /* ============================================================
    QUICK VIEW MODAL
    ============================================================ */
-let modalQtyVal=1, modalId=null, lastFocus=null, galImgs=[], galIdx=0, mColor=0, mSize=1;
+let modalQtyVal=1, modalId=null, lastFocus=null, galImgs=[], galIdx=0, mPatternNames=[], mPatternIdx=0, mSize=1;
 function openModal(id){
   const p=byId(id); modalId=id; modalQtyVal=1; lastFocus=document.activeElement;
-  galImgs=productImgs(p); galIdx=0; mColor=0; mSize=1;
+  const hasPatterns = !!(p.patterns && Object.keys(p.patterns).length);
+  mPatternNames = hasPatterns ? Object.keys(p.patterns) : [];
+  galImgs = hasPatterns ? [p.img, ...Object.values(p.patterns)] : productImgs(p);
+  galIdx=0; mPatternIdx=0; mSize=1;
   const disc=p.mrp?Math.round((1-p.price/p.mrp)*100):0;
   const wished=wishlistItems.includes(id);
-  const colors=['#FFFFFF','#0D2B4E','#1B6CA8','#8BC34A'], colorNames=['White','Navy','Teal','Lime'];
   const sizes=['S','M','L','XL','2XL'];
   const priceHTML = p.enq
     ? '<span class="enq">Price on enquiry</span>'
@@ -1789,8 +1803,10 @@ function openModal(id){
         <div class="mrate"><span class="stars">${starsHTML(5,p.rating)}</span>${p.rating} · 128 reviews</div>
         <div class="mprice">${priceHTML}</div>
         <p class="mdesc">A premium ${p.badge.toLowerCase()}-grade textile${p.tc!=='—'?` at ${p.tc}`:''}, engineered for institutional use — durable, comfortable and built for repeated industrial laundering.</p>
-        <div class="opt-lbl">Colour <b id="m-cname">${colorNames[0]}</b></div>
-        <div class="chips" id="m-colors">${colors.map((c,i)=>`<button class="swatch ${i===0?'sel':''}" style="background:${c}" title="${colorNames[i]}" onclick="mPickColor(${i},'${colorNames[i]}')"></button>`).join('')}</div>
+        ${hasPatterns ? `
+        <div class="opt-lbl">Pattern <b id="m-cname">${mPatternNames[0]}</b></div>
+        <div class="chips" id="m-colors">${mPatternNames.map((n,i)=>`<button class="swatch pattern ${i===0?'sel':''}" style="background-image:url('${IMG(p.patterns[n],120)}')" title="${n}" onclick="mPickColor(${i},'${n}')"></button>`).join('')}</div>
+        ` : ''}
         <div class="opt-lbl">Size <b id="m-sname">${sizes[1]}</b></div>
         <div class="chips" id="m-sizes">${sizes.map((s,i)=>`<button class="chip-size ${i===1?'sel':''}" onclick="mPickSize(${i},'${s}')">${s}</button>`).join('')}</div>
         <div class="modal-actions">
@@ -1805,12 +1821,27 @@ function openModal(id){
   const m=document.getElementById('modal'); m.classList.add('show'); document.body.style.overflow='hidden';
   icons(); setTimeout(()=>m.querySelector('.modal-close').focus(),50);
 }
-function galSet(i){ galIdx=i; document.getElementById('mg-img').src=IMG(galImgs[i],900); document.querySelectorAll('#mg-thumbs img').forEach((t,x)=>t.classList.toggle('active',x===i)); }
+function galSet(i){
+  galIdx=i; document.getElementById('mg-img').src=IMG(galImgs[i],900);
+  document.querySelectorAll('#mg-thumbs img').forEach((t,x)=>t.classList.toggle('active',x===i));
+  /* keep the Pattern swatch in sync when a pattern thumb is picked directly */
+  if(mPatternNames.length && i>=1){
+    mPatternIdx=i-1;
+    document.querySelectorAll('#m-colors .swatch').forEach((s,x)=>s.classList.toggle('sel',x===mPatternIdx));
+    const cn=document.getElementById('m-cname'); if(cn) cn.textContent=mPatternNames[mPatternIdx];
+  }
+}
 function galNav(d){ galSet((galIdx+d+galImgs.length)%galImgs.length); }
 function mgZoom(){ document.getElementById('mg-main').classList.toggle('zoom'); }
 function mgMove(e){ const s=document.getElementById('mg-main'); if(!s.classList.contains('zoom'))return; const r=s.getBoundingClientRect(); document.getElementById('mg-img').style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%'; }
 function mgOut(){ document.getElementById('mg-main').classList.remove('zoom'); }
-function mPickColor(i,name){ mColor=i; document.querySelectorAll('#m-colors .swatch').forEach((s,x)=>s.classList.toggle('sel',x===i)); document.getElementById('m-cname').textContent=name; }
+function mPickColor(i,name){
+  mPatternIdx=i;
+  document.querySelectorAll('#m-colors .swatch').forEach((s,x)=>s.classList.toggle('sel',x===i));
+  document.getElementById('m-cname').textContent=name;
+  /* clicking a Pattern swatch auto-highlights & shows its matching gallery image (thumb 0 is the default shot, patterns start at thumb 1) */
+  galSet(i+1);
+}
 function mPickSize(i,name){ mSize=i; document.querySelectorAll('#m-sizes .chip-size').forEach((s,x)=>s.classList.toggle('sel',x===i)); document.getElementById('m-sname').textContent=name; }
 function toggleWishModal(id){ toggleWish(id); const b=document.getElementById('m-wish'); if(b)b.classList.toggle('on',wishlistItems.includes(id)); }
 function closeModal(){ document.getElementById('modal').classList.remove('show'); document.body.style.overflow=''; if(lastFocus)lastFocus.focus(); }
@@ -1829,13 +1860,17 @@ function productImgs(p){
 function openProduct(id){
   const p = byId(id); if(!p) return;
   const imgs = productImgs(p);
-  const thumbs4 = [p.img, p.img, p.img, p.img];
+  const hasPatterns = !!(p.patterns && Object.keys(p.patterns).length);
+  const patternNames = hasPatterns ? Object.keys(p.patterns) : [];
+  const patternImgs  = hasPatterns ? Object.values(p.patterns) : [];
+  /* thumb 1 mirrors the main image; thumbs 2-4 are the Plain / Printed / Stripe pattern shots */
+  const thumbs4 = hasPatterns ? [p.img, ...patternImgs].slice(0,4)
+    : (p.imgs && p.imgs.length) ? [...p.imgs, p.img, p.img, p.img].slice(0,4) : [p.img, p.img, p.img, p.img];
   const related = PRODUCTS.filter(x=>x.id!==id).sort(()=>0.5-Math.random()).slice(0,10);
   const now = p.price, mrp = p.mrp, off = mrp?Math.round((1-now/mrp)*100):0;
   const priceBlock = p.enq
     ? `<div class="price"><span class="enq">Price on enquiry</span></div>`
     : `<div class="price"><span class="now">${p.from?' ':''}</span>${mrp?`<span class="was"></span><span class="off">${off}% OFF</span>`:''}</div>`;
-  const colorNames=['White','Navy','Teal','Lime'], colorHex=['#FFFFFF','#0D2B4E','#1B6CA8','#8BC34A'];
   const sizes=['Single','Double','Queen','King','Custom'];
   const star='<svg viewBox="0 0 24 24" fill="#F5C842" stroke="none"><path d="M12 2.6l2.7 5.7 6.3.8-4.6 4.3 1.2 6.2L12 16.9 6.4 19.6l1.2-6.2L3 9.1l6.3-.8z"/></svg>';
   const featSVG={shield:'<path d="M12 2.5l7.5 3.2v5.3c0 4.7-3.2 7.6-7.5 9.5-4.3-1.9-7.5-4.8-7.5-9.5V5.7z"/>',leaf:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>',scissors:'<circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><path d="M20 4 8.5 15.5M14.4 14.4 20 20M8.5 8.5 12 12"/>',truck:'<path d="M2 4h13v12H2zM15 8h4l3 3v5h-7z"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="18" cy="18.5" r="1.8"/>'};
@@ -1887,7 +1922,8 @@ a{color:inherit}
 .desc{color:var(--body);font-size:14.5px;margin-bottom:22px}
 .lbl{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin:0 0 10px}.lbl .sel-name{color:var(--ink);text-transform:none;letter-spacing:0;margin-left:6px}
 .swatches{display:flex;gap:10px;margin-bottom:20px}
-.sw{width:32px;height:32px;border-radius:50%;cursor:pointer;border:2px solid var(--g100);box-shadow:inset 0 0 0 2px #fff;transition:.2s}.sw.sel{border-color:var(--teal);transform:scale(1.08)}
+.sw{width:34px;height:34px;border-radius:50%;cursor:pointer;border:2px solid var(--g100);box-shadow:inset 0 0 0 2px #fff;transition:.2s}.sw.sel{border-color:var(--teal);transform:scale(1.08)}
+.sw.pattern{border-radius:10px;background-size:cover;background-position:center;background-color:var(--g50);box-shadow:none}
 .sizes{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
 .size{padding:9px 16px;border:1.5px solid var(--g100);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--body);transition:.2s}.size.sel{border-color:var(--navy);background:var(--navy);color:#fff}
 .buy{display:flex;gap:12px;align-items:stretch}
@@ -1957,7 +1993,7 @@ footer{background:var(--navy-900);color:var(--navy-100);margin-top:46px;border-r
   </div>
   <div class="card hero">
     <div class="gallery">
-      <div class="thumbs">${thumbs4.map((g,i)=>`<img src="${IMGF(g,200)}" class="${i===0?'active':''}" alt="${p.name} variant ${i+1}" onclick="setMain(this,'${IMGF(g,1000)}')" onerror="this.style.display='none'">`).join('')}</div>
+      <div class="thumbs">${thumbs4.map((g,i)=>{const pIdx=(hasPatterns&&i>0)?i-1:-1;const label=hasPatterns?(i===0?'main shot':patternNames[i-1]):('variant '+(i+1));return `<img src="${IMGF(g,200)}" class="${i===0?'active':''}" alt="${p.name} ${label}" onclick="setMain(this,'${IMGF(g,1000)}',${pIdx})" onerror="this.style.display='none'">`;}).join('')}</div>
       <div class="stage" id="stage" onclick="toggleZoom()" onmousemove="zoomMove(event)" onmouseleave="zoomOut()">
         <span class="badge">${p.badge} Grade</span>
         <img id="mainImg" src="${IMGF(p.img,1000)}" alt="${p.name}">
@@ -1970,8 +2006,10 @@ footer{background:var(--navy-900);color:var(--navy-100);margin-top:46px;border-r
       <div class="rating"><span class="stars">${star.repeat(5)}</span> ${p.rating} &middot; 128 verified reviews</div>
       ${priceBlock}
       <p class="desc">A premium ${p.badge.toLowerCase()}-grade textile engineered for heavy institutional use${p.tc&&p.tc!=='—'?` at ${p.tc}`:''}. Built for durability, comfort and repeated industrial laundering.</p>
-      <div class="lbl">Colour <span class="sel-name" id="colName">${colorNames[0]}</span></div>
-      <div class="swatches" id="sw">${colorHex.map((c,i)=>`<div class="sw ${i===0?'sel':''}" style="background:${c}" onclick="pickColor(${i})" title="${colorNames[i]}"></div>`).join('')}</div>
+      ${hasPatterns ? `
+      <div class="lbl">Pattern <span class="sel-name" id="colName">${patternNames[0]}</span></div>
+      <div class="swatches" id="sw">${patternNames.map((n,i)=>`<div class="sw pattern ${i===0?'sel':''}" style="background-image:url('${IMGF(patternImgs[i],120)}')" onclick="pickColor(${i})" title="${n}"></div>`).join('')}</div>
+      ` : ''}
       <div class="lbl">Size <span class="sel-name" id="sizeName">${sizes[2]}</span></div>
       <div class="sizes" id="sz">${sizes.map((s,i)=>`<div class="size ${i===2?'sel':''}" onclick="pickSize(${i})">${s}</div>`).join('')}</div>
       <div class="lbl">Quantity</div>
@@ -2018,20 +2056,23 @@ footer{background:var(--navy-900);color:var(--navy-100);margin-top:46px;border-r
 <div class="toast" id="toast"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span id="toast-t"></span></div>
 <script>
 const PID=${p.id},PNAME=${JSON.stringify(p.name)},KEY='${STORE_KEY}',TTL=${STORE_TTL};
-const COLORS=${JSON.stringify(colorNames)},SIZES=${JSON.stringify(sizes)};
+const HAS_PATTERNS=${hasPatterns},PATTERNS=${JSON.stringify(patternNames)},SIZES=${JSON.stringify(sizes)};
+const PATTERN_IMGS=${JSON.stringify(patternImgs.map(g=>IMGF(g,1000)))};
 let ci=0,si=2,q=1;
 function rs(){try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.exp&&s.exp>Date.now())return s;}catch(e){}return{enquiryItems:[],wishlistItems:[]};}
 function ws(s){s.exp=Date.now()+TTL;localStorage.setItem(KEY,JSON.stringify(s));}
 function toast(t){var e=document.getElementById('toast');document.getElementById('toast-t').textContent=t;e.classList.add('show');clearTimeout(window._t);window._t=setTimeout(function(){e.classList.remove('show')},2600);}
-function setMain(el,src){var im=document.getElementById('mainImg');im.style.opacity=0;setTimeout(function(){im.src=src;im.style.opacity=1},180);document.querySelectorAll('.thumbs img').forEach(function(t){t.classList.remove('active')});el.classList.add('active');}
+/* clicking a thumbnail swaps the main image; if that thumb is one of the Plain/Printed/Stripe shots (pIdx>=0), the matching Pattern swatch is highlighted to stay in sync */
+function setMain(el,src,pIdx){var im=document.getElementById('mainImg');im.style.opacity=0;setTimeout(function(){im.src=src;im.style.opacity=1},180);document.querySelectorAll('.thumbs img').forEach(function(t){t.classList.remove('active')});el.classList.add('active');if(HAS_PATTERNS&&typeof pIdx==='number'&&pIdx>=0)pickColor(pIdx,true);}
 function toggleZoom(){document.getElementById('stage').classList.toggle('zoom');}
 function zoomMove(e){var s=document.getElementById('stage');if(!s.classList.contains('zoom'))return;var r=s.getBoundingClientRect();document.getElementById('mainImg').style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%';}
 function zoomOut(){document.getElementById('stage').classList.remove('zoom');}
-function pickColor(i){ci=i;document.querySelectorAll('#sw .sw').forEach(function(s,x){s.classList.toggle('sel',x===i)});document.getElementById('colName').textContent=COLORS[i];}
+/* clicking a Pattern swatch auto-highlights it and swaps the main image to that pattern's shot (and vice-versa from setMain above) */
+function pickColor(i,fromThumb){ci=i;document.querySelectorAll('#sw .sw').forEach(function(s,x){s.classList.toggle('sel',x===i)});var nm=document.getElementById('colName');if(nm)nm.textContent=PATTERNS[i];if(!fromThumb){var im=document.getElementById('mainImg');im.style.opacity=0;setTimeout(function(){im.src=PATTERN_IMGS[i];im.style.opacity=1},180);document.querySelectorAll('.thumbs img').forEach(function(t,x){t.classList.toggle('active',x===i+1)});}}
 function pickSize(i){si=i;document.querySelectorAll('#sz .size').forEach(function(s,x){s.classList.toggle('sel',x===i)});document.getElementById('sizeName').textContent=SIZES[i];}
 function qd(d){q=Math.max(1,q+d);document.getElementById('qn').textContent=q;}
 function addCart(){var s=rs();var it=(s.enquiryItems||[]).find(function(e){return e.id===PID});if(it)it.qty+=q;else{s.enquiryItems=s.enquiryItems||[];s.enquiryItems.push({id:PID,qty:q});}ws(s);var b=document.getElementById('addBtn');var o=b.innerHTML;b.innerHTML='Added \\u2713';b.style.background='#2E7D32';toast(q+' pc'+(q>1?'s':'')+' added to your enquiry');setTimeout(function(){b.innerHTML=o;b.style.background=''},1500);}
-function waInquiry(){var s=rs();var it=(s.enquiryItems||[]).find(function(e){return e.id===PID});if(it)it.qty+=q;else{s.enquiryItems=s.enquiryItems||[];s.enquiryItems.push({id:PID,qty:q});}ws(s);var m='*Product Inquiry — SriShakthi Tex*%0A%0A*Product:* '+PNAME+'%0A*Colour:* '+COLORS[ci]+'%0A*Size:* '+SIZES[si]+'%0A*Quantity:* '+q+' pcs%0A';window.open('https://wa.me/+918884412321?text='+m,'_blank');}
+function waInquiry(){var s=rs();var it=(s.enquiryItems||[]).find(function(e){return e.id===PID});if(it)it.qty+=q;else{s.enquiryItems=s.enquiryItems||[];s.enquiryItems.push({id:PID,qty:q});}ws(s);var m='*Product Inquiry — SriShakthi Tex*%0A%0A*Product:* '+PNAME+'%0A'+(HAS_PATTERNS?('*Pattern:* '+PATTERNS[ci]+'%0A'):'')+'*Size:* '+SIZES[si]+'%0A*Quantity:* '+q+' pcs%0A';window.open('https://wa.me/+918884412321?text='+m,'_blank');}
 function toggleWish(){var s=rs();s.wishlistItems=s.wishlistItems||[];var i=s.wishlistItems.indexOf(PID);var b=document.getElementById('wishBtn'),l=document.getElementById('wishLabel');if(i===-1){s.wishlistItems.push(PID);b.classList.add('saved');l.textContent='Saved to Wishlist';toast('Added to wishlist');}else{s.wishlistItems.splice(i,1);b.classList.remove('saved');l.textContent='Add to Wishlist';toast('Removed from wishlist');}ws(s);}
 function openRelated(id){if(window.opener&&!window.opener.closed&&window.opener.openProduct){window.opener.openProduct(id);window.close();}else{toast('Open from the main collection');}}
 function relScroll(dir){var g=document.getElementById('relGrid');if(!g)return;var card=g.querySelector('.rel');var step=card?(card.offsetWidth+16)*Math.max(1,Math.floor(g.clientWidth/(card.offsetWidth+16))):g.clientWidth*0.8;g.scrollBy({left:dir*step,behavior:'smooth'});}
